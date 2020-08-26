@@ -1,0 +1,23 @@
+
+.Main {
+  line-height: 1.4;
+  font-family: 'Raleway', sans-serif;
+  width: 100%;
+  height: 100%;
+  max-width: 30em;
+  min-height: 30rem;
+  background-color: #f6f8fd;
+}
+
+.Bottom {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  max-width: 30em;
+  min-height: 5rem;
+  background-color: #f6f8fd;
+  border-bottom-right-radius: 0.8em;
+  border-bottom-left-radius: 0.8em;
+  position: relative;
+}
