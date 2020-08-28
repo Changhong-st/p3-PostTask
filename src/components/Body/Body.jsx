@@ -1,10 +1,10 @@
 import React from 'react';
-import styles from './Body.module.scss';
+
 import FirstScreen from './FirstScreen/FirstScreen';
 import SecondScreen from './SecondScreen/SecondScreen';
 import ThirdScreen from './ThirdScreen/ThirdScreen';
 import ForthScreen from './ForthScreen/ForthScreen';
-import Button from '../Button';
+
 
 
 
@@ -12,32 +12,83 @@ class Body extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentScreenIndex: 0,
-      jobTitle: '',
-      jobDetails: '',
+      currentScreenIndex: 1,
+      jobTitle: "",
+      jobDetails: "",
+      // jobTitleLength: , // >10
+      // jobDetailsLength: , // >25
       
+      isTitleCorrect: false,
+  
+      isDetailsCorrect: false,
     }
 
     this.handleScreenSwitch = this.handleScreenSwitch.bind(this);
     this.handleNextClick = this.handleNextClick.bind(this);
     this.handleBackClick = this.handleBackClick.bind(this);
+    this.onJobTitle = this.onJobTitle.bind(this);
+    this.onJobDetails = this.onJobDetails.bind(this);
     this.handleJobTitle = this.handleJobTitle.bind(this);
     this.handleJobDetails = this.handleJobDetails.bind(this);
+    this.handleSecondScreenNextClick = this.handleSecondScreenNextClick.bind(this);
 
   }
 
-  handleJobTitle (value) {
-    this.setState(() => ({ jobTitle: value }));
+  onJobTitle (value) {
+    this.setState(
+      { jobTitle: value },
+      this.handleJobTitle
+      );
   }
 
-  handleJobDetails (value) {
-    this.setState(() => ({ jobDetails: value }));
+  onJobDetails (value) {
+    this.setState(
+      { jobDetails: value },
+      this.handleJobDetails
+      );
+  }
+
+  handleJobTitle () {
+    //event.preventDefault();
+    if (this.state.jobTitle.length > 10){
+      this.setState({
+        isTitleCorrect: true,
+      })
+    }else {
+      this.setState({
+        isTitleCorrect: false,
+      });
+    }
+  }
+
+
+  handleJobDetails () {
+    // event.preventDefault();
+    if (this.state.jobDetails.length > 25 ){
+      this.setState({
+        isDetailsCorrect: true,
+      })
+    }else {
+      this.setState({
+        isDetailsCorrect: false,
+      });
+    }
   }
 
   handleNextClick () {
     this.setState(() => ({
       currentScreenIndex: this.state.currentScreenIndex + 1,
     }))
+  }
+  
+
+ handleSecondScreenNextClick ()
+    {
+     this.handleJobTitle();
+     this.handleJobDetails();
+     if (this.state.isTitleCorrect && this.state.isDetailsCorrect ) {
+       this.handleNextClick();
+      }
   }
 
   handleBackClick () {
@@ -54,23 +105,36 @@ class Body extends React.Component {
         </div>
       );
       case (0): 
-        return (<div className = { styles.Main }> <FirstScreen /> </div>);
+        return (
+          <FirstScreen handleNextClick={this.handleNextClick} />
+        );
         
       case (1):
-        return (
-          <div className = { styles.Main }> 
-            <SecondScreen
+        return ( 
+          <SecondScreen
+              isTitleCorrect = {this.state.isTitleCorrect}
+              isDetailsCorrect = {this.state.isDetailsCorrect}
+              onJobTitle = { this.onJobTitle }
+              onJobDetails = { this.onJobDetails }
               handleJobTitle = { this.handleJobTitle }
               handleJobDetails = { this.handleJobDetails }
-            /> 
-          </div>
-          );
+              handleNextClick = { this.handleSecondScreenNextClick }
+              handleBackClick = { this.handleBackClick }
+          />
+        );
 
       case (2):
-        return (<div className = { styles.Main }> <ThirdScreen /> </div>);
+        return ( 
+          <ThirdScreen 
+              handleNextClick = { this.handleNextClick }
+              handleBackClick = { this.handleBackClick }
+          />
+        );
 
       case (3):
-        return (<div className = { styles.Main }> <ForthScreen /> </div>);
+        return (
+          <ForthScreen handleBackClick = { this.handleBackClick } /> 
+        );
         
     }
   }
@@ -84,47 +148,6 @@ class Body extends React.Component {
       {
         this.handleScreenSwitch(currentScreenIndex)
       }
-      <div className = { styles.Bottom } >
-        {
-          currentScreenIndex === 0
-            ?
-          <div className = { styles.Bottom } >
-            <Button 
-              handleNextClick = { this.handleNextClick } 
-            > 
-              Next 
-            </Button>
-          </div>
-          :
-          currentScreenIndex < 3
-            ?
-          <div className = { styles.Bottom } >
-            <Button
-            handleBackClick = { this.handleBackClick }
-            >
-              Back
-            </Button>
-            <Button 
-              handleNextClick = { this.handleNextClick } 
-            > 
-              Next 
-            </Button>
-          </div>
-            :
-            <div className = { styles.Bottom } >
-            <Button
-            handleBackClick = { this.handleBackClick }
-            >
-              Back
-            </Button>
-            <Button 
-              handleNextClick = { this.handleNextClick } 
-            > 
-              Get quotes 
-            </Button>
-          </div>
-        }
-        </div>
       </React.Fragment>
     )
   }
