@@ -66,20 +66,18 @@
 
 .JobTitle {
   width: 30em;
-  margin-left: 1em;
-  margin-right: 1em;
   height: 3em;
-}
-
-.JobDetails {
   margin-left: 1em;
   margin-right: 1em;
-  height: 12em;
-  width: 30em;
   resize: none;
 }
 
-.Box {
+.JobDetails {
+  @extend .JobTitle;
+  height: 12em;
+}
+
+.BudgetRadioBox {
   display: flex;
   flex-direction: row;
 }
@@ -93,12 +91,13 @@
   margin-left: 1em;
 }
 
-.Bit {
+.BudgetRadio {
   display: flex;
   flex-direction: column;
+  margin: 1em;
 }
 
-.Selected {
+.TaskRadio {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
