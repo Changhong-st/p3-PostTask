@@ -28,21 +28,21 @@ render(){
         <h2 className={styles.OtherHeading}> 
           Where do you need it done? 
         </h2>
-        <div className={styles.Box}>
-        <div className={styles.Piece}>
-          <TaskRadio
-            radioType={"In Person"}
-            radioHint={"Select this if you need the Tasker physically there."}
-            isChecked={true} 
-          />
-        </div>
-        <div className={styles.Piece}>
-          <TaskRadio
-            radioType={"Online"}
-            radioHint={"Select this if the Tasker can do it from home."}
-            isChecked={false}
-          />
-        </div>
+        <div className={styles.TaskRadioBox}>
+          <div className={styles.Piece}>
+            <TaskRadio
+              radioType={"In Person"}
+              radioHint={"Select this if you need the Tasker physically there."}
+              isChecked={true} 
+            />
+          </div>
+          <div className={styles.Piece}>
+            <TaskRadio
+              radioType={"Online"}
+              radioHint={"Select this if the Tasker can do it from home."}
+              isChecked={false}
+            />
+          </div>
         </div>
         <h2 className={styles.OtherHeading}> 
           When do you need it done? 

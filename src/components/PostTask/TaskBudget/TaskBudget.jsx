@@ -29,7 +29,7 @@ class TaskBudget extends React.Component{
           <label className={styles.HintLabel}> 
             Please enter the price you're comfortable to pay to get your task done. Taskers will use this as a guide for how much to offer. 
           </label>
-          <div className={styles.BudgetRadioBox}>
+          <div className={styles.TaskRadioBox}>
             <div className={styles.BudgetRadio}>
               <TaskRadio
               radioType={"Total"}
