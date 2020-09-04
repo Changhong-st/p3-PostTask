@@ -6,6 +6,7 @@ import PostTaskTop from '../../PostTaskTop';
 import TaskRadio from '../../TaskRadio';
 import BudgetInput from './BudgetInput';
 import Button from '../../Button';
+import BudgetHelp from './BudgetHelp';
 
 class TaskBudget extends React.Component{
   constructor(props) {
@@ -24,7 +25,12 @@ class TaskBudget extends React.Component{
         <div className={styles.Main}>
           <div className={styles.TitleBox}>
             <h2 className={styles.OtherHeading}> What is your budget? </h2>
-            <div> Want help? </div>
+            <div className={styles.WantHelpBox}>
+              <div className={styles.WantHelp}>
+              Want help? 
+              <BudgetHelp />
+              </div> 
+            </div>
           </div>
           <label className={styles.HintLabel}> 
             Please enter the price you're comfortable to pay to get your task done. Taskers will use this as a guide for how much to offer. 
