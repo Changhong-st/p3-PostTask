@@ -7,6 +7,7 @@ import TaskRadio from '../../TaskRadio';
 import BudgetInput from './BudgetInput';
 import Button from '../../Button';
 import BudgetHelp from './BudgetHelp';
+import BudgetDisplay from './BudgetDisplay';
 
 class TaskBudget extends React.Component{
   constructor(props) {
@@ -50,16 +51,17 @@ class TaskBudget extends React.Component{
             </div>
           </div>
           <BudgetInput
+            name={"wage"}
+            taskBudget={this.props.taskBudget}
+            minBudget={5}
+            maxBudget={9999}
             onBudgetChange={this.onBudgetChange} 
           />
+          
           <div>
-            <div className={styles.Budget}>
-              <div className={styles.Label}>
-                <div> ESTIMATED BUDGET </div>
-                <div> Final payment will be agree later </div>
-              </div>
-              <div> ${this.props.taskBudget} </div>
-            </div>
+            <BudgetDisplay 
+              taskBudget={this.props.taskBudget}
+            />
           </div>
         </div>
         <div className={styles.Bottom} >
