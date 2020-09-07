@@ -136,7 +136,7 @@
 .Money {
   @extend .Radio;
   margin-left: 1em;
-  margin-right: 1em;
+  margin-right: 0.1em;
   width: 8em;
 }
 
@@ -176,5 +176,9 @@
   display: none;
 }
 .WantHelp:hover .BudgetHelp{
+  display: flex;
+}
+
+.budget_input {
   display: flex;
 }

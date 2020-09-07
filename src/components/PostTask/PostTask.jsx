@@ -16,6 +16,8 @@ class PostTask extends React.Component {
       jobDetailsLength: 25,
       startDate: null,
       taskBudget: "0",
+      budgetHour: "1",
+      budgetHourlyWage: "0",
     }
 
     this.handleScreenSwitch = this.handleScreenSwitch.bind(this);
@@ -28,7 +30,9 @@ class PostTask extends React.Component {
     this.handleTaskDescriptionNextClick = this.handleTaskDescriptionNextClick.bind(this);
     this.handleTaskLocationAndTimeNextClick = this.handleTaskLocationAndTimeNextClick.bind(this);
     this.handleDateValue = this.handleDateValue.bind(this);
-    this.onBudget = this.onBudget.bind(this);
+    this.onTaskBudget = this.onTaskBudget.bind(this);
+    this.onBudgetHourlyWage = this.onBudgetHourlyWage.bind(this);
+    this.onBudgetHour = this.onBudgetHour.bind(this);
   }
 
   onJobTitle(value) {
@@ -45,8 +49,24 @@ class PostTask extends React.Component {
       );
   }
 
-  onBudget(value) {
-    this.setState({ taskBudget: value });
+  onTaskBudget() {
+    this.setState((prevState) => ({
+      taskBudget: prevState.budgetHourlyWage * prevState.budgetHour,
+    }));
+  }
+
+  onBudgetHour(value) {
+    this.setState(
+      { budgetHour: value },
+      this.onTaskBudget
+      );
+  }
+
+  onBudgetHourlyWage(value) {
+    this.setState(
+      { budgetHourlyWage: value },
+      this.onTaskBudget
+      );
   }
 
   handleJobTitle() {
@@ -132,7 +152,9 @@ class PostTask extends React.Component {
           <TaskBudget
             taskBudget={this.state.taskBudget}
             handleBackClick={this.handleBackClick}
-            onBudget={this.onBudget}
+            // onTaskBudget={this.onTaskBudget}
+            onBudgetHour={this.onBudgetHour}
+            onBudgetHourlyWage={this.onBudgetHourlyWage}
           /> 
         );
         

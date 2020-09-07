@@ -6,6 +6,7 @@ function TaskRadio({
   radioType,
   radioHint,
   isChecked,
+  handleClick,
 }) {
   return (
     <React.Fragment>
@@ -15,6 +16,7 @@ function TaskRadio({
           name="TaskRadio"
           type="radio" 
           defaultChecked={isChecked}
+          onClick={handleClick}
         />
         <p className={styles.RadioTitle}> {radioType} </p>
       </div>

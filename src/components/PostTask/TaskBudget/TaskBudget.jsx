@@ -12,13 +12,37 @@ import BudgetDisplay from './BudgetDisplay';
 class TaskBudget extends React.Component{
   constructor(props) {
     super(props);
+    this.state = {
+      isHourlyRate: false,
+    };
 
-    this.onBudgetChange = this.onBudgetChange.bind(this);
+    this.onBudgetHour = this.onBudgetHour.bind(this);
+    this.onBudgetHourlyWage = this.onBudgetHourlyWage.bind(this);
+    this.onBudgetHourlyWage = this.onBudgetHourlyWage.bind(this);
+    this.handleHourlyRateClick = this.handleHourlyRateClick.bind(this);
+    this.handleTotalClick = this.handleTotalClick.bind(this);
   }
 
-  onBudgetChange(e) {
-    this.props.onBudget(e.target.value);
+  // onTaskBudget(e) {
+  //   this.props.onTaskBudget(e.target.value);
+  // }
+  
+  handleHourlyRateClick(e) {
+    this.setState({ isHourlyRate: true });
   }
+
+  handleTotalClick(e) {
+    this.setState({ isHourlyRate: false });
+  }
+
+  onBudgetHour(e) {
+    this.props.onBudgetHour(e.target.value);
+  }
+
+  onBudgetHourlyWage(e) {
+    this.props.onBudgetHourlyWage(e.target.value);
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -41,21 +65,26 @@ class TaskBudget extends React.Component{
               <TaskRadio
               radioType={"Total"}
               isChecked={true} 
+              handleClick={this.handleTotalClick}
               />
             </div>
             <div className={styles.BudgetRadio}>
               <TaskRadio
               radioType={"Hourly Rate"}
-              isChecked={false} 
+              isChecked={false}
+              handleClick={this.handleHourlyRateClick}
               />
             </div>
           </div>
           <BudgetInput
             name={"wage"}
+            type={"hour"}
+            switchMode={this.state.isHourlyRate}
             taskBudget={this.props.taskBudget}
             minBudget={5}
             maxBudget={9999}
-            onBudgetChange={this.onBudgetChange} 
+            onBudgetHour={this.onBudgetHour}
+            onBudgetHourlyWage={this.onBudgetHourlyWage} 
           />
           
           <div>

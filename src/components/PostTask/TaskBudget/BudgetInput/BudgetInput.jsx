@@ -9,32 +9,43 @@ function BudgetInput({
   taskBudget,
   minBudget,
   maxBudget,
-  onBudgetChange,
+  onBudgetHour,
+  onBudgetHourlyWage,
   name,
+  type,
+  switchMode,
 }) {
 
   const validateInput = (event) => {
     event.target.value = event.target.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1').replace(/^0+/g, '').replace(/(?<!^)-/g, '');
   }
-
+  console.log({switchMode});
   const cx = classNames.bind(styles);
   const errorHint = "Please suggest a budget between $" + minBudget + " and $" + maxBudget + " for your task";
 
   return (
-    <React.Fragment>
+    <div className={styles.budget_input}>
       <input 
         className={cx(
           {
             "Money": name === "wage",
-            "Hour": name === "hour",
           }
         )}
         type="text"
         name={name}
-        onChange={onBudgetChange}
+        onChange={onBudgetHourlyWage}
         onInput={validateInput}
-      />
-      <input />
+      />{switchMode?<React.Fragment><div>/hr &times;</div>
+      <input
+        className={cx(
+          {
+            "Hour": type === "hour",
+          }
+        )}
+        type="text"
+        onChange={onBudgetHour}
+        onInput={validateInput}
+      /><div>/hrs</div> </React.Fragment>: null}
      
       {taskBudget < minBudget || taskBudget > maxBudget
         ?
@@ -44,7 +55,7 @@ function BudgetInput({
         :
         null
       }
-    </React.Fragment>
+    </div>
   )
 }
 
