@@ -14,6 +14,7 @@ function TaskInput({
   taskInputQuestion,
   taskInputHint,
   errorHint,
+  value,
 }) {
   const cx = classNames.bind(styles);
   return (
@@ -32,7 +33,8 @@ function TaskInput({
           }
         )} 
         maxLength={maxLength} 
-        onChange={onJobInputChange}  
+        onChange={onJobInputChange} 
+        value={value}
       />
       {jobLength < minLength
         ? 

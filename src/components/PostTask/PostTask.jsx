@@ -33,6 +33,7 @@ class PostTask extends React.Component {
     this.onTaskBudget = this.onTaskBudget.bind(this);
     this.onBudgetHourlyWage = this.onBudgetHourlyWage.bind(this);
     this.onBudgetHour = this.onBudgetHour.bind(this);
+    this.handleBudgetWageClick = this.handleBudgetWageClick.bind(this);
   }
 
   onJobTitle(value) {
@@ -67,6 +68,10 @@ class PostTask extends React.Component {
       { budgetHourlyWage: value },
       this.onTaskBudget
       );
+  }
+
+  handleBudgetWageClick() {
+    this.setState({ budgetHour: 1 });
   }
 
   handleJobTitle() {
@@ -126,14 +131,16 @@ class PostTask extends React.Component {
       case (1):
         return ( 
           <TaskDescription
-              jobTitleLength={this.state.jobTitleLength}
-              jobDetailsLength={this.state.jobDetailsLength}
-              onJobTitle={this.onJobTitle}
-              onJobDetails={this.onJobDetails}
-              handleJobTitle={this.handleJobTitle}
-              handleJobDetails={this.handleJobDetails}
-              handleNextClick={this.handleTaskDescriptionNextClick}
-              handleBackClick={this.handleBackClick}
+            jobTitle={this.state.jobTitle}
+            jobDetails={this.state.jobDetails}
+            jobTitleLength={this.state.jobTitleLength}
+            jobDetailsLength={this.state.jobDetailsLength}
+            onJobTitle={this.onJobTitle}
+            onJobDetails={this.onJobDetails}
+            handleJobTitle={this.handleJobTitle}
+            handleJobDetails={this.handleJobDetails}
+            handleNextClick={this.handleTaskDescriptionNextClick}
+            handleBackClick={this.handleBackClick}
           />
         );
 
@@ -152,7 +159,7 @@ class PostTask extends React.Component {
           <TaskBudget
             taskBudget={this.state.taskBudget}
             handleBackClick={this.handleBackClick}
-            // onTaskBudget={this.onTaskBudget}
+            handleBudgetWageClick={this.handleBudgetWageClick}
             onBudgetHour={this.onBudgetHour}
             onBudgetHourlyWage={this.onBudgetHourlyWage}
           /> 

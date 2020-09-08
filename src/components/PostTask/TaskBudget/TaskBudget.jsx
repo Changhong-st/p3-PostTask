@@ -32,7 +32,10 @@ class TaskBudget extends React.Component{
   }
 
   handleTotalClick(e) {
-    this.setState({ isHourlyRate: false });
+    this.setState(
+      { isHourlyRate: false },
+      this.props.handleBudgetWageClick
+      );
   }
 
   onBudgetHour(e) {
@@ -77,8 +80,6 @@ class TaskBudget extends React.Component{
             </div>
           </div>
           <BudgetInput
-            name={"wage"}
-            type={"hour"}
             switchMode={this.state.isHourlyRate}
             taskBudget={this.props.taskBudget}
             minBudget={5}

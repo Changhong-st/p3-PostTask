@@ -6,6 +6,7 @@
   max-width: 30em;
   min-height: 25rem;
   background-color: #f6f8fd;
+  position: relative;
 }
 
 .Bottom {
@@ -117,10 +118,12 @@
 .Budget {
   display: flex;
   background-color: lightblue;
-  width: auto;
+  width: 100%;
   height: 5em;
   justify-items: center;
   justify-content: space-around;
+  position: absolute;
+  bottom: 0;
 }
 
 .Label {
@@ -179,6 +182,15 @@
   display: flex;
 }
 
+.budget_input_box {
+  display: flex;
+  flex-direction: column;
+}
+
 .budget_input {
   display: flex;
+}
+
+.units {
+  @extend .Radio;
 }

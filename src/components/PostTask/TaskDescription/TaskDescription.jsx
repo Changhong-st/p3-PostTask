@@ -29,6 +29,7 @@ class TaskDescription extends React.Component {
         <div className={styles.Main}>
           <TaskInput
             size={'small'}
+            value={this.props.jobTitle}
             minLength={'10'}
             maxLength={'50'}
             onJobInputChange={this.onTitleChange}
@@ -38,6 +39,7 @@ class TaskDescription extends React.Component {
             errorHint={"Please enter at least 10 characters and a maximum of 50 "}
           />
           <TaskInput
+            value={this.props.jobDetails}
             size={'large'}
             minLength={'25'}
             maxLength={'1000'}
